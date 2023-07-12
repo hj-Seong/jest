@@ -29,5 +29,21 @@ it('CheckboxWithLabel이 클릭 이후 글자가 바뀜', () => {
   fireEvent.click(getByLabelText(/off/i));
 
   // on글자를 가진 엘리먼트를 찾고 그 값이 있는지 확인
-  expect(queryByLabelText(/on/i)).toBeTruthy();
+  // 클릭을 통해서 label의 텍스트값이 on으로 바뀌고 off는 없어지는것 확인
+  expect(queryByLabelText(/off/i)).toBeFalsy();
+});
+
+// it을 통해서,CheckboxWithLabel컴포넌트에
+// labelOn="선택" labelOff="취소" 이 값을 넣고 
+// 처음에는 취소 텍스트를 가진 라벨이 있는지 확인하고
+// 클릭한 후에 선택 텍스트를 가진 라벨이 있는지 확인하세요
+it('CheckboxWithLabel 클릭확인', () => {
+    const { getByLabelText, queryByLabelText } = render(
+        <CheckboxWithLabel labelOn="선택" labelOff="취소"/>
+    )
+    expect(queryByLabelText(/취소/)).toBeTruthy
+    
+    fireEvent.click(getByLabelText(/취소/))
+
+    expect(queryByLabelText(/선택/)).toBeTruthy
 });
