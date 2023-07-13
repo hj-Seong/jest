@@ -29,3 +29,15 @@ it('App에서 증가버튼을 눌렀을때 값이 바뀌는지 ', () => {
 
 // 감소버튼을 눌렀을때 값이 감소하는지
 // 직접연습
+it('App에서 감소버튼을 눌렀을때 값이 바뀌는지 ', () => {
+  render(<App />)
+  // 증가버튼
+  const decrementBtn = screen.getByTestId('decrementBtn');
+
+  // 이벤트 실행후 증가값확인
+  fireEvent.click(decrementBtn);
+  fireEvent.click(decrementBtn);
+
+  const changeState = screen.getByText('현재숫자 :-2');
+  expect(changeState).toBeInTheDocument();
+});
