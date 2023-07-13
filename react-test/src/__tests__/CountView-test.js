@@ -11,5 +11,11 @@ it('CountView의 props값에 따른 화면의 글자확인', () => {
     const initalState = screen.queryByText('현재숫자 :5');
     // 안에 값이 있으면 truthy 참
     // 값이 없으면(null) 거짓 
-    expect(initalState).toBeTruthy()
+    expect(initalState).toBeTruthy();
+
+    //한번 더 렌더하여서 내용찾기
+    render(<CountView count={0} />)
+    const countState = screen.getByText("현재숫자 :0")
+    // 현재 가져온 html엘리멘트가 Document에 있는지 확인
+    expect(countState).toBeInTheDocument();
 });
